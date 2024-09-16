@@ -10,6 +10,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieStreamController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,9 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/actor/{id}/show', [IndexController::class, 'actor'])->name('actor.show');
     Route::get('/director/{id}/show', [IndexController::class, 'director'])->name('director.show');
     Route::get('/genre/{id}/show', [IndexController::class, 'genre'])->name('genre.show');
+
+    //profile
+    Route::get('/proflie', [UserProfileController::class, 'index'])->name('profile');
 
     //watchlist
     Route::get('/watchlists', [WatchlistController::class, 'index'])->name('watchlists');
@@ -90,12 +94,6 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
     Route::delete('/movies/{id}/delete', [MovieController::class, 'destroy'])->name('movies.destroy');
     Route::get('/movies/{id}/progress', [MovieController::class, 'getProgress'])->name('movies.progress');
     Route::get('/movies/{id}/progress/show', [MovieController::class, 'showMovieProgressPage'])->name('movies.progress.show');
-
-
-    // Profile routes
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 // Movie Streaming
