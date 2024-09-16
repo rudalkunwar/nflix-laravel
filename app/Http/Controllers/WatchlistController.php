@@ -45,13 +45,12 @@ class WatchlistController extends Controller
      */
     public function destroy($movie_id)
     {
-        // Use composite key to find and delete the watchlist entry
-        $watchlist = Watchlist::where('user_id', Auth::id())
+        $deleted = Watchlist::where('user_id', Auth::id())
             ->where('movie_id', $movie_id)
-            ->firstOrFail();
-
-        $watchlist->delete();
-
-        return back()->with('success', 'Movie removed from your watchlist.');
+            ->delete();
+        if ($deleted) {
+            return back()->with('success', 'Movie removed from your watchlist.');
+        }
+        return back()->with('error', 'Movie not found in your watchlist.');
     }
 }
