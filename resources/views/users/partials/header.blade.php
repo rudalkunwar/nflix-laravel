@@ -34,7 +34,7 @@
                 </ul>
             </div>
             <div class="extra flex items-center space-x-6">
-                <a href="">
+                <a href="{{route('user.search')}}">
                     <svg stroke="currentColor" fill="white" stroke-width="0" viewBox="0 0 512 512" height="20px"
                         width="20px" xmlns="http://www.w3.org/2000/svg">
                         <path

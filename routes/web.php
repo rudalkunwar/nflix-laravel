@@ -10,6 +10,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieStreamController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,10 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
 
     //profile
     Route::get('/proflie', [UserProfileController::class, 'index'])->name('profile');
+
+    //search
+    Route::get('/search', [SearchController::class, 'index'])->name('search');
+    Route::get('/search/movie', [SearchController::class, 'search'])->name('movies.search');
 
     //watchlist
     Route::get('/watchlists', [WatchlistController::class, 'index'])->name('watchlists');
