@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Watchlist;
-use App\Models\Movie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +30,13 @@ class WatchlistController extends Controller
             'movie_id' => 'required|exists:movies,id',
         ]);
 
+        $exists = Watchlist::where('user_id', Auth::id())
+            ->where('movie_id', $request->movie_id)
+            ->exists(); // Check if the movie is already in the watchlist
+
+        if ($exists) {
+            return back()->with('error', 'Movie already in your watchlist!');
+        }
 
         Watchlist::create([
             'user_id' => Auth::id(),
@@ -47,10 +53,12 @@ class WatchlistController extends Controller
     {
         $deleted = Watchlist::where('user_id', Auth::id())
             ->where('movie_id', $movie_id)
-            ->delete();
+            ->delete(); // Delete the movie from the watchlist
+
         if ($deleted) {
             return back()->with('success', 'Movie removed from your watchlist.');
         }
+
         return back()->with('error', 'Movie not found in your watchlist.');
     }
 }
