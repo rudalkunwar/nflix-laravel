@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+
 use Illuminate\Support\Collection;
 
 class BubbleSortAlgorithm
@@ -47,5 +48,12 @@ class BubbleSortAlgorithm
         }
 
         return new Collection($array);
+    }
+
+    public function filterByGenre(Collection $collection, string $genre): Collection
+    {
+        return $collection->filter(function ($movie) use ($genre) {
+            return $movie->genres->contains('name', $genre);
+        });
     }
 }

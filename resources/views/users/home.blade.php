@@ -24,18 +24,22 @@
                 </h1>
 
                 <!-- Action Buttons -->
-                <div class="mt-4 md:flex">
+                <div class="mt-4 md:flex space-x-4">
+                    <!-- Play Button -->
                     <a href="{{ route('user.movie.show', $movie->id) }}"
-                        class="flex px-5 py-2 bg-gray-300 text-black mr-4 hover:bg-gray-700 hover:text-white transition duration-300">
+                        class="flex items-center px-5 py-2 bg-gray-300 text-black hover:bg-gray-700 hover:text-white transition duration-300 ease-in-out">
                         <i class="ri-play-fill text-2xl mr-2"></i>
-                        <h3>Play</h3>
+                        <span class="text-base font-semibold">Play</span>
                     </a>
-                    <a href=""
-                        class="flex my-2 sm:my-0 px-5 py-2 border-2 rounded-sm hover:bg-gray-400 hover:text-black transition duration-500 ease-in-out">
-                        <i class="ri-add-fill text-sm sm:text-xl mr-2"></i>
-                        <h3>Watch Later</h3>
+
+                    <!-- Watch Later Button -->
+                    <a href="#"
+                        class="flex items-center px-5 py-2 border-2 border-gray-300 hover:bg-gray-400 hover:text-black transition duration-300 ease-in-out">
+                        <i class="ri-add-fill text-xl mr-2"></i>
+                        <span class="text-base font-semibold">Watch Later</span>
                     </a>
                 </div>
+
 
                 <!-- Movie Additional Info -->
                 <div class="hidden sm:block">
