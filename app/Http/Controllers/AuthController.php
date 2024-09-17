@@ -38,7 +38,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('home')->with('status', 'Registration successful! Welcome!');
+        return redirect()->route('user.home')->with('status', 'Registration successful! Welcome!');
     }
 
     /**
