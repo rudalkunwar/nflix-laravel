@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Genre;
 use App\Models\Watchlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,9 @@ class WatchlistController extends Controller
             ->get()
             ->pluck('movie');
 
-        return view('users.watchlist', compact('watchlists'));
+        $genres = Genre::all();
+
+        return view('users.watchlist', compact('watchlists', 'genres'));
     }
 
     /**

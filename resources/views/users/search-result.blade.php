@@ -1,6 +1,17 @@
 @extends('users.layouts.app')
 
 @section('content')
+    <!-- Breadcrumb -->
+    <div class="container mx-auto py-4 flex items-center gap-3">
+        <a href="{{ route('user.home') }}" class="text-blue-600 text-base">
+            <i class="ri-home-line"></i>
+        </a>
+        <span>Search</span>
+        <span class="text-sm text-gray-400">
+            <i class="ri-arrow-right-s-line"></i>
+        </span>
+        <span>Results</span>
+    </div>
     <div class="container mx-auto px-4 py-8">
         <div class="rounded-lg shadow-lg p-6 mb-8">
             <h1 class="text-3xl font-bold text-black mb-6">Search results for: {{ $query }}</h1>

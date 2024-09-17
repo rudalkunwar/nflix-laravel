@@ -28,13 +28,12 @@
                     </li>
                     <li><a href="{{ route('user.movies.all') }}"
                             class="text-white hover:text-gray-400 font-semibold cursor-pointer">Movies</a></li>
-                    <li><a class="text-white hover:text-gray-400 font-semibold cursor-pointer">New & Popular</a></li>
                     <li><a href="{{ route('user.watchlists') }}"
                             class="text-white hover:text-gray-400 font-semibold cursor-pointer">My List</a></li>
                 </ul>
             </div>
             <div class="extra flex items-center space-x-6">
-                <a href="{{route('user.search')}}">
+                <a href="{{ route('user.search') }}">
                     <svg stroke="currentColor" fill="white" stroke-width="0" viewBox="0 0 512 512" height="20px"
                         width="20px" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -51,12 +50,11 @@
                     </svg>
                 </a>
                 <a href="{{ route('user.profile') }}">
-                    <img class="w-7 rounded-md"
-                        src="{{asset('user-avatar.png')}}"
-                        alt="Profile Image">
+                    <img class="w-7 rounded-md" src="{{ asset('user-avatar.png') }}" alt="Profile Image">
                 </a>
             </div>
         </nav>
     </div>
 </body>
+
 </html>
