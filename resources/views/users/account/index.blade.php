@@ -37,7 +37,7 @@
                 </div>
             @else
                 <div class="mb-4">
-                    <p class="text-gray-700">User details not available.</p>
+                    <p class="text-gray-700">User details not available.Complete your the profile in Settings</p>
                 </div>
             @endif
 

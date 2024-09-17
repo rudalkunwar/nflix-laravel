@@ -14,8 +14,8 @@
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
                         @if (auth()->user()->userDetails && auth()->user()->userDetails->photo)
-                            <img src="{{ Storage::url('user_photos/' . auth()->user()->userDetails->photo) }}"
-                                alt="Profile Photo" class="rounded-full w-14 h-14 border border-gray-200 p-1 object-cover">
+                            <img src="{{ asset('storage/users/' . auth()->user()->userDetails->photo) }}" alt="Profile Photo"
+                                class="rounded-full w-14 h-14 border border-gray-200 p-1 object-cover object-top">
                         @else
                             <img src="{{ asset('user-avatar.png') }}" alt="Default Avatar"
                                 class="w-14 h-14 border border-gray-200 p-1 object-cover">

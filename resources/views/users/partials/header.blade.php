@@ -30,6 +30,9 @@
                             class="text-white hover:text-gray-400 font-semibold cursor-pointer">Movies</a></li>
                     <li><a href="{{ route('user.watchlists') }}"
                             class="text-white hover:text-gray-400 font-semibold cursor-pointer">My List</a></li>
+                    <li><a href="{{ route('user.premium') }}"
+                            class="text-white hover:text-gray-400 font-semibold cursor-pointer">Premium</a>
+                    </li>
                 </ul>
             </div>
             <div class="extra flex items-center space-x-6">
@@ -50,7 +53,13 @@
                     </svg>
                 </a>
                 <a href="{{ route('user.account.profile') }}">
-                    <img class="w-7 rounded-md" src="{{ asset('user-avatar.png') }}" alt="Profile Image">
+
+                    @if (auth()->user()->userDetails && auth()->user()->userDetails->photo)
+                        <img src="{{ asset('storage/users/' . auth()->user()->userDetails->photo) }}"
+                            alt="Profile Photo" class="w-12 h-12 p-1 object-cover object-top">
+                    @else
+                        <img class="w-7 rounded-md" src="{{ asset('user-avatar.png') }}" alt="Profile Image">
+                    @endif
                 </a>
             </div>
         </nav>

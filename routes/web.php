@@ -9,6 +9,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieStreamController;
+use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\UserProfileController;
@@ -37,8 +38,6 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/director/{id}/show', [IndexController::class, 'director'])->name('director.show');
     Route::get('/genre/{id}/show', [IndexController::class, 'genre'])->name('genre.show');
 
-
-
     // Account Routes
     Route::get('/account/profile', [UserAccountController::class, 'profile'])->name('account.profile');
     Route::put('/account/profile/update', [UserAccountController::class, 'updateProfile'])->name('account.update');
@@ -46,6 +45,9 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/account/change-password', [UserAccountController::class, 'changePassword'])->name('account.change-password');
     Route::put('/account/password/update', [UserAccountController::class, 'updatePassword'])->name('account.password.update');
     Route::post('logout', [AuthController::class, 'destroy'])->name('logout');
+
+    //premium 
+    Route::get('/premium', [PremiumController::class, 'index'])->name('premium');
 
     //search
     Route::get('/search', [SearchController::class, 'index'])->name('search');
@@ -61,6 +63,7 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
 Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
 
     // Categories management
     Route::get('/categories', [CategroyController::class, 'index'])->name('categories.index');

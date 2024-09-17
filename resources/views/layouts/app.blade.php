@@ -96,7 +96,7 @@
                     </a>
                 </li>
                 <li>
-                    <form action="{{ route('logout') }}" method="post">
+                    <form action="{{ route('admin.logout') }}" method="post">
                         @csrf
                         <button type="submit"
                             class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100 w-full">

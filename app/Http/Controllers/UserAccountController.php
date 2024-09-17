@@ -60,7 +60,7 @@ class UserAccountController extends Controller
 
             // Handle photo upload
             if ($request->hasFile('photo')) {
-                $path = $request->file('photo')->store('user_photos');
+                $path = $request->file('photo')->store('public/users');
                 $userDetails->photo = basename($path);
             }
 
@@ -70,13 +70,13 @@ class UserAccountController extends Controller
             $user->userDetails()->create([
                 'address' => $request->address,
                 'phone_number' => $request->phone_number,
-                'photo' => $request->hasFile('photo') ? basename($request->file('photo')->store('user_photos')) : null,
+                'photo' => $request->hasFile('photo') ? basename($request->file('photo')->store('public/users')) : null,
             ]);
         }
 
         $user->save();
 
-        return redirect()->route('user.account.index')->with('status', 'Profile updated successfully.');
+        return redirect()->route('user.account.profile')->with('status', 'Profile updated successfully.');
     }
 
     /**
@@ -99,6 +99,6 @@ class UserAccountController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        return redirect()->route('user.change-password')->with('status', 'Password updated successfully.');
+        return redirect()->route('user.account.profile')->with('status', 'Password updated successfully.');
     }
 }
