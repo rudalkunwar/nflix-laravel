@@ -53,4 +53,8 @@ class User extends Authenticatable
     {
         $this->belongsToMany(Watchlist::class);
     }
+    public function userDetails()
+    {
+        return $this->hasOne(UserDetails::class);
+    }
 }
