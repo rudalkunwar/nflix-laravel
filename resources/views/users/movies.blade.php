@@ -1,6 +1,15 @@
 @extends('users.layouts.app')
-
 @section('content')
+    <!-- Breadcrumb -->
+    <div class="container mx-auto py-4 flex items-center gap-3">
+        <a href="{{ route('user.home') }}" class="text-blue-600 text-base">
+            <i class="ri-home-line"></i>
+        </a>
+        <span>All Movies</span>
+        <span class="text-sm text-gray-400">
+            <i class="ri-arrow-right-s-line"></i>
+        </span>
+    </div>
     <div class="p-6 w-full bg-gray-100 min-h-screen">
         <div class="bg-white shadow-lg rounded-lg p-6 md:p-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-6">

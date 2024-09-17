@@ -1,12 +1,22 @@
 @extends('users.layouts.app')
-
 @section('content')
+    <!-- Breadcrumb -->
+    <div class="container mx-auto py-4 flex items-center gap-3">
+        <a href="{{ route('user.home') }}" class="text-blue-600 text-base">
+            <i class="ri-home-line"></i>
+        </a>
+        <span>Movie</span>
+        <span class="text-sm text-gray-400">
+            <i class="ri-arrow-right-s-line"></i>
+        </span>
+        <span>{{ strtoupper($movie->title) }}</span>
+    </div>
     @if (!$movie)
         <div>
             <h2>No movie to play</h2>
         </div>
     @else
-        <div class="container mx-auto px-4 py-8">
+        <div class="container mx-auto px-4 py-4">
             <!-- Movie Details -->
             <div class="bg-gray-800 rounded-lg shadow-lg p-6 mb-8">
                 <div class="flex flex-col md:flex-row">
@@ -26,9 +36,10 @@
                         <div class="flex flex-col text-gray-400 mb-4">
                             <span>Released : {{ $movie->release_date->format('M d, Y') }}</span>
                             <span>Genres : {{ $movie->genres->pluck('name')->join(', ') }} </span>
+                            <span>Language : {{ $movie->language }} </span>
                         </div>
+                        <h4 class="text-white">Overview</h4>
                         <p class="text-gray-300 mb-4">{{ $movie->overview }}</p>
-
                         <!-- Director -->
                         @if ($movie->director)
                             <div class="mt-6 w-full">
@@ -53,7 +64,7 @@
                 <h2 class="text-3xl font-bold text-white mb-4">Cast</h2>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                     @foreach ($movie->actors as $actor)
-                        <div class="text-center">
+                        <div class="w-[150px] text-center">
                             <a href="{{ route('user.actor.show', $actor->id) }}">
                                 <img src="{{ Storage::url('casts/' . $actor->photo) }}" alt="{{ $actor->name }}"
                                     class="rounded-lg mb-2 hover:opacity-75 transition ease-in-out duration-150">
