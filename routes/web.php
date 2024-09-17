@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CastController;
 use App\Http\Controllers\CategroyController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\GenreController;
@@ -48,6 +49,9 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
 
     //premium 
     Route::get('/premium', [PremiumController::class, 'index'])->name('premium');
+    Route::get('/premium/upgrade', [PremiumController::class, 'upgrade'])->name('premium.upgrade');
+    Route::post('/premium/upgrade/checkout', [CheckoutController::class, 'initiateUpgrade'])->name('premium.upgrade.checkout');
+    Route::delete('/premium/cancel', [PremiumController::class, 'cancel'])->name('premium.cancel');
 
     //search
     Route::get('/search', [SearchController::class, 'index'])->name('search');
@@ -112,3 +116,10 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
 // Movie Streaming
 Route::get('movie/{id}/stream/', [MovieStreamController::class, 'streamVideo'])->name('streamVideo');
 Route::get('movie/{id}/stream/{quality}', [MovieStreamController::class, 'stream'])->name('stream');
+
+
+//routes for the esewa payment gateway
+
+Route::post('/checkout/payment/{order}/esewa/process', [CheckoutController::class, 'payment'])->name('checkout.payment.esewa.process');
+Route::get('/checkout/payment/{order}/esewa/completed', [CheckoutController::class, 'completed'])->name('checkout.payment.esewa.completed');
+Route::get('/checkout/payment/{order}/failed', [CheckoutController::class, 'failed'])->name('checkout.payment.esewa.failed');

@@ -10,4 +10,8 @@ class PremiumController extends Controller
     {
         return view('users.premium');
     }
+    public function upgrade()
+    {
+        return view('users.premium-upgrade');
+    }
 }

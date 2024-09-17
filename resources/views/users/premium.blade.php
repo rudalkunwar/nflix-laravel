@@ -6,7 +6,7 @@
             <div class="bg-white shadow-md rounded-lg p-6 max-w-md w-full text-center">
                 <h2 class="text-xl font-bold mb-4">Profile Update Required</h2>
                 <p class="text-gray-600 mb-4">Please update your profile information to access premium features.</p>
-                <a href="{{ route('user.account.edit') }}"
+                <a href="{{ route('user.account.settings') }}"
                     class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
                     <i class="ri-user-line mr-2"></i> Update Profile
                 </a>
@@ -55,22 +55,24 @@
                     </ul>
                 </div>
 
-                <!-- Upgrade/Downgrade Form -->
-                <form action="" method="POST">
-                    @csrf
-                    @if (auth()->user()->userDetails->is_premium)
+                @if (auth()->user()->userDetails->is_premium)
+                    <!-- Upgrade/Downgrade Form -->
+                    <form
+                        action="{{ auth()->user()->userDetails->is_premium ? route('user.premium.cancel') : route('user.premium.upgrade') }}"
+                        method="POST">
                         @method('DELETE')
+                        @csrf
                         <button type="submit"
                             class="bg-red-500 text-white px-6 py-3 rounded-full w-full flex items-center justify-center hover:bg-red-600 transition">
                             <i class="ri-lock-unlock-line mr-2"></i> Cancel Premium Membership
                         </button>
-                    @else
-                        <button type="submit"
-                            class="bg-blue-500 text-white px-6 py-3 rounded-full w-full flex items-center justify-center hover:bg-blue-600 transition">
-                            <i class="ri-lock-line mr-2"></i> Upgrade to Premium
-                        </button>
-                    @endif
-                </form>
+                    </form>
+                @else
+                    <a href="{{ route('user.premium.upgrade') }}"
+                        class="bg-blue-500 text-white px-6 py-3 rounded-full w-full flex items-center justify-center hover:bg-blue-600 transition">
+                        <i class="ri-lock-line mr-2"></i> Upgrade to Premium
+                    </a>
+                @endif
             </div>
         </div>
     @endif

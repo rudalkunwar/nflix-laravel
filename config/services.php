@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'esewa' => [
+        'merchant' => env('ESEWA_MERCHANT_CODE'),
+        'sandbox' => env('ESEWA_SANDBOX', true),
+    ],
+
 ];

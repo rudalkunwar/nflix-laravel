@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_details', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('address')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->string('photo')->nullable();
-            $table->boolean('is_premium')->default(false);
-            $table->timestamp('premium_expiry_date')->nullable();
+            $table->string('transaction_id')->nullable();
+            $table->decimal('amount', 8, 2);
+            $table->enum('payment_status', ['pending', 'completed', 'failed'])->default('pending');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_details');
+        Schema::dropIfExists('orders');
     }
 };
