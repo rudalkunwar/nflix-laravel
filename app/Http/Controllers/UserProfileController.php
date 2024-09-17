@@ -10,6 +10,6 @@ class UserProfileController extends Controller
     public function index()
     {
         // $user = Auth::user();
-        return view('users.profile.index');
+        return view('users.account.index');
     }
 }

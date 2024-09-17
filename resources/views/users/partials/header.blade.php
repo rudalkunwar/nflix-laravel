@@ -49,7 +49,7 @@
                         </path>
                     </svg>
                 </a>
-                <a href="{{ route('user.profile') }}">
+                <a href="{{ route('user.account.profile') }}">
                     <img class="w-7 rounded-md" src="{{ asset('user-avatar.png') }}" alt="Profile Image">
                 </a>
             </div>

@@ -9,7 +9,7 @@
         <span class="text-sm text-gray-400">
             <i class="ri-arrow-right-s-line"></i>
         </span>
-        <span>{{ strtoupper($movie->title) }}</span>
+        <span>{{ strtoupper($movie?->title) }}</span>
     </div>
     @if (!$movie)
         <div>

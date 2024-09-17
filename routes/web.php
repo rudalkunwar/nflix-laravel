@@ -10,6 +10,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieStreamController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,7 @@ Route::get('register', [AuthController::class, 'registerPage'])->name('register'
 Route::post('register', [AuthController::class, 'register']);
 Route::get('login', [AuthController::class, 'loginPage'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
-Route::post('logout', [AuthController::class, 'destroy'])->name('logout');
+
 
 // User Group Routes
 Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
@@ -36,8 +37,15 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/director/{id}/show', [IndexController::class, 'director'])->name('director.show');
     Route::get('/genre/{id}/show', [IndexController::class, 'genre'])->name('genre.show');
 
-    //profile
-    Route::get('/proflie', [UserProfileController::class, 'index'])->name('profile');
+
+
+    // Account Routes
+    Route::get('/account/profile', [UserAccountController::class, 'profile'])->name('account.profile');
+    Route::put('/account/profile/update', [UserAccountController::class, 'updateProfile'])->name('account.update');
+    Route::get('/account/settings', [UserAccountController::class, 'settings'])->name('account.settings');
+    Route::get('/account/change-password', [UserAccountController::class, 'changePassword'])->name('account.change-password');
+    Route::put('/account/password/update', [UserAccountController::class, 'updatePassword'])->name('account.password.update');
+    Route::post('logout', [AuthController::class, 'destroy'])->name('logout');
 
     //search
     Route::get('/search', [SearchController::class, 'index'])->name('search');
