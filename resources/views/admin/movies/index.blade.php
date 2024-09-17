@@ -19,6 +19,7 @@
                 <tr class="bg-blue-500 text-white">
                     <th class="py-3 px-4 text-left">Title</th>
                     <th class="py-3 px-4 text-left">Poster</th>
+                    <th class="py-3 px-4 text-left">Language</th>
                     <th class="py-3 px-4 text-left">Release Date</th>
                     <th class="py-3 px-4 text-left">Actions</th>
                     <th class="py-3 px-4 text-left">More</th>
@@ -32,6 +33,7 @@
                             <img src="{{ asset('storage/movies/' . $movie->poster_image) }}" alt="{{ $movie->title }}"
                                 class="w-16 h-16 object-cover rounded-full border border-gray-200">
                         </td>
+                        <td class="py-3 px-4">{{ $movie->language }}</td>
                         <td class="py-3 px-4">{{ $movie->release_date->format('F d, Y') }}</td>
                         <td class="py-3 px-4 ">
                             <div class="flex items-center space-x-2">
@@ -40,7 +42,8 @@
                                     <i class="ri-edit-line"></i>
                                     <span>Edit</span>
                                 </a>
-                                <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST" class="inline">
+                                <form action="{{ route('admin.movies.destroy', $movie->id) }}" method="POST"
+                                    class="inline">
                                     @csrf
                                     @method('DELETE')
                                     <button onclick="return confirm('Are you sure to delete this movie ? ')" type="submit"
@@ -52,7 +55,8 @@
                             </div>
                         </td>
                         <td>
-                            <a class="text-blue-600 hover:underline" href="{{ route('admin.movies.show', $movie->id) }}">more</a>
+                            <a class="text-blue-600 hover:underline"
+                                href="{{ route('admin.movies.show', $movie->id) }}">more</a>
                         </td>
                     </tr>
                 @empty

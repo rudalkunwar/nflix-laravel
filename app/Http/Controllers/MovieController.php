@@ -45,6 +45,7 @@ class MovieController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255|unique:movies',
             'overview' => 'required|string',
+            'language' => 'required|string',
             'director_id' => 'nullable|exists:directors,id',
             'category_id' => 'nullable|exists:categories,id',
             'release_date' => 'required|date|before_or_equal:today',
@@ -117,6 +118,7 @@ class MovieController extends Controller
         $data = $request->validate([
             'title' => 'required|string|max:255|unique:movies,title,' . $id,
             'overview' => 'required|string',
+            'language' => 'required|string',
             'director_id' => 'nullable|exists:directors,id',
             'category_id' => 'nullable|exists:categories,id',
             'release_date' => 'required|date|before_or_equal:today',

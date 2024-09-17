@@ -39,6 +39,23 @@
                     @enderror
                 </div>
 
+                <!-- Language Field -->
+                <div class="mb-4">
+                    <label for="language" class="block text-gray-700 text-sm font-medium mb-2">Language</label>
+                    <select id="language" name="language" required
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <option value="" disabled selected>Select Language</option>
+                        <option value="english">English</option>
+                        <option value="nepali">Nepali</option>
+                        <option value="hindi">Hindi</option>
+                        <option value="french">French</option>
+                        <option value="japanese">Japanese</option>
+                    </select>
+                    @error('language')
+                        <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 <!-- Director Field -->
                 <div class="mb-4">
                     <label for="director_id" class="block text-gray-700 text-sm font-medium mb-2">Director</label>
@@ -145,7 +162,8 @@
 
                 <!-- Backdrop image Field -->
                 <div class="mb-4">
-                    <label for="backdrop_image" class="block text-gray-700 text-sm font-medium mb-2">Backdrop Image</label>
+                    <label for="backdrop_image" class="block text-gray-700 text-sm font-medium mb-2">Backdrop
+                        Image</label>
                     <input type="file" id="backdrop_image" name="backdrop_image"
                         class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
                     @error('backdrop_image')

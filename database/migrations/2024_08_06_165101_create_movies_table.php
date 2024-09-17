@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('overview');
+            $table->text('language');
             $table->string('poster_image')->nullable();
             $table->string('backdrop_image');
             $table->string('video_path');

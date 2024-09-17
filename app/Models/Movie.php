@@ -9,7 +9,7 @@ class Movie extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    // In your Movie model (e.g., Movie.php)
+
     protected $casts = [
         'release_date' => 'date',
     ];

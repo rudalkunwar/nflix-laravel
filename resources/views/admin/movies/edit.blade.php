@@ -40,6 +40,24 @@
                     @enderror
                 </div>
 
+                <!-- Language Field -->
+                <div class="mb-4">
+                    <label for="language" class="block text-gray-700 text-sm font-medium mb-2">Language</label>
+                    <select id="language" name="language" required
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <option value="" disabled {{ $movie->language == '' ? 'selected' : '' }}>Select Language
+                        </option>
+                        <option value="english" {{ $movie->language == 'english' ? 'selected' : '' }}>English</option>
+                        <option value="nepali" {{ $movie->language == 'nepali' ? 'selected' : '' }}>Nepali</option>
+                        <option value="hindi" {{ $movie->language == 'hindi' ? 'selected' : '' }}>Hindi</option>
+                        <option value="french" {{ $movie->language == 'french' ? 'selected' : '' }}>French</option>
+                        <option value="japanese" {{ $movie->language == 'japanese' ? 'selected' : '' }}>Japanese</option>
+                    </select>
+                    @error('language')
+                        <p class="mt-1 text-red-500 text-sm">{{ $message }}</p>
+                    @enderror
+                </div>
+
                 <!-- Director Field -->
                 <div class="mb-4">
                     <label for="director_id" class="block text-gray-700 text-sm font-medium mb-2">Director</label>
@@ -149,7 +167,8 @@
 
                 <!-- Backdrop Image Field -->
                 <div class="mb-4">
-                    <label for="backdrop_image" class="block text-gray-700 text-sm font-medium mb-2">Backdrop Image</label>
+                    <label for="backdrop_image" class="block text-gray-700 text-sm font-medium mb-2">Backdrop
+                        Image</label>
                     <img class="w-24" src="{{ asset('storage/movies/' . $movie->backdrop_image) }}"
                         alt="{{ 'bg' . $movie->title }}">
                     <input type="file" id="backdrop_image" name="backdrop_image"
