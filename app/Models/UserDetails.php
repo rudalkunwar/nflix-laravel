@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class UserDetails extends Model
 {
     use HasFactory;
+    
     protected $guarded = [];
+
+    protected $casts = [
+        'premium_expiry_date' => 'datetime',
+    ];
 
     public function user()
     {

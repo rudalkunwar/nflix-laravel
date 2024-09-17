@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Esewa;
+use App\Services\Esewa;
 use App\Models\Order;
+use App\Models\UserDetails;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CheckoutController extends Controller
 {
@@ -31,11 +33,13 @@ class CheckoutController extends Controller
         $order = Order::findOrFail($order_id);
         $gateway = new Esewa;
 
+        $uniqueProductCode = Str::random(10); // Adjust length as needed
+
         try {
             $response = $gateway->purchase([
                 'amount' => $gateway->formatAmount($order->amount),
                 'totalAmount' => $gateway->formatAmount($order->amount),
-                'productCode' => 'ABAC2098',
+                'productCode' => $uniqueProductCode,
                 'failedUrl' => $gateway->getFailedUrl($order),
                 'returnUrl' => $gateway->getReturnUrl($order),
             ], $request);
@@ -73,7 +77,7 @@ class CheckoutController extends Controller
             // Update user's premium status
             $user = Auth::user();
             if ($user) {
-                UserDetail::updateOrCreate(
+                UserDetails::updateOrCreate(
                     ['user_id' => $user->id],
                     ['is_premium' => true, 'premium_expiry_date' => now()->addYear()]
                 );
@@ -88,6 +92,6 @@ class CheckoutController extends Controller
     public function failed($order_id, Request $request)
     {
         $order = Order::findOrFail($order_id);
-        return view('checkout.failed', compact('order'));
+        return view('users.failed-payment', compact('order'));
     }
 }
