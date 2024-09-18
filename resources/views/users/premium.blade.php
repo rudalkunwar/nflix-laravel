@@ -62,7 +62,7 @@
                         method="POST">
                         @method('DELETE')
                         @csrf
-                        <button type="submit"
+                        <button type="submit" onclick="return confirm('Are you sure to cancel membership ? ')"
                             class="bg-red-500 text-white px-6 py-3 rounded-full w-full flex items-center justify-center hover:bg-red-600 transition">
                             <i class="ri-lock-unlock-line mr-2"></i> Cancel Premium Membership
                         </button>

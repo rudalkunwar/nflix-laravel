@@ -53,6 +53,9 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::post('/premium/upgrade/checkout', [CheckoutController::class, 'initiateUpgrade'])->name('premium.upgrade.checkout');
     Route::delete('/premium/cancel', [PremiumController::class, 'cancel'])->name('premium.cancel');
 
+    //download movie 
+    route::get('/movie/{id}/download', [MovieController::class, 'download'])->name('movie.download')->middleware('premium');
+
     //search
     Route::get('/search', [SearchController::class, 'index'])->name('search');
     Route::get('/search/movie', [SearchController::class, 'search'])->name('movies.search');

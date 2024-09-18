@@ -74,7 +74,14 @@
                     @endforeach
                 </div>
             </div>
-
+            <!-- Cast and Crew -->
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-3xl font-bold text-white mb-4">Download Movie</h2>
+                <a href="{{ route('user.movie.download', $movie->id) }}"
+                    class="bg-green-500 text-white px-6 py-3 rounded-full w-full flex items-center justify-center hover:bg-green-600 transition">
+                    <i class="ri-download-2-line mr-2"></i> Download Movie
+                </a>
+            </div>
         </div>
 
         <script>

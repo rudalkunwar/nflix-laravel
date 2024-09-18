@@ -205,4 +205,19 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         return view('admin.movies.movie-process', compact('movie'))->with('success', 'Movie Added and Started Processing');
     }
+
+    public function download($id)
+    {
+        $movie = Movie::findOrFail($id);
+
+        $fileName = $movie->file_name;
+
+        $filePath = storage_path('app/public/movies/' . $fileName);
+
+        if (!file_exists($filePath)) {
+            return redirect()->back()->with('error', 'Movie file not found.');
+        }
+        
+        return response()->download($filePath, $movie->title . '.mp4');
+    }
 }
