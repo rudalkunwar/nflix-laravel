@@ -210,14 +210,14 @@ class MovieController extends Controller
     {
         $movie = Movie::findOrFail($id);
 
-        $fileName = $movie->file_name;
+        $fileName = $movie->video_path;
 
-        $filePath = storage_path('app/public/movies/' . $fileName);
+        $filePath = storage_path('app/public/videos/movies/' . $fileName);
 
         if (!file_exists($filePath)) {
             return redirect()->back()->with('error', 'Movie file not found.');
         }
-        
+
         return response()->download($filePath, $movie->title . '.mp4');
     }
 }
