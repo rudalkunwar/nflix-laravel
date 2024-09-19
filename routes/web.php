@@ -13,7 +13,7 @@ use App\Http\Controllers\MovieStreamController;
 use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserAccountController;
-use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +30,7 @@ Route::post('login', [AuthController::class, 'login']);
 
 
 // User Group Routes
-Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
+Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(function () {
 
     Route::get('/home', [IndexController::class, 'home'])->name('home');
     Route::get('/movie/{id}', [IndexController::class, 'show'])->name('movie.show');
@@ -45,7 +45,7 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/account/settings', [UserAccountController::class, 'settings'])->name('account.settings');
     Route::get('/account/change-password', [UserAccountController::class, 'changePassword'])->name('account.change-password');
     Route::put('/account/password/update', [UserAccountController::class, 'updatePassword'])->name('account.password.update');
-    Route::post('logout', [AuthController::class, 'destroy'])->name('logout');
+    Route::post('logout', [AuthController::class, 'destroy'])->name('logout')->withoutMiddleware('verified');
 
     //premium 
     Route::get('/premium', [PremiumController::class, 'index'])->name('premium');
@@ -114,6 +114,12 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
     Route::delete('/movies/{id}/delete', [MovieController::class, 'destroy'])->name('movies.destroy');
     Route::get('/movies/{id}/progress', [MovieController::class, 'getProgress'])->name('movies.progress');
     Route::get('/movies/{id}/progress/show', [MovieController::class, 'showMovieProgressPage'])->name('movies.progress.show');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+    Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify')->middleware('signed');
+    Route::post('/email/verification-notification', [VerificationController::class, 'resend'])->name('verification.resend')->middleware('throttle:6,1');
 });
 
 // Movie Streaming
