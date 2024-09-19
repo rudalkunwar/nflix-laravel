@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Notifications\WelcomeNotification;
 
 class VerificationController extends Controller
 {
@@ -30,6 +31,9 @@ class VerificationController extends Controller
     public function verify(EmailVerificationRequest $request)
     {
         $request->fulfill();
+
+        // Send welcome email after verification
+        $request->user()->notify(new WelcomeNotification());
 
         return redirect()->route('user.home');
     }
