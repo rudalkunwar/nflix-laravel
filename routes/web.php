@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CastController;
 use App\Http\Controllers\CategroyController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
 
@@ -114,6 +116,18 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
     Route::delete('/movies/{id}/delete', [MovieController::class, 'destroy'])->name('movies.destroy');
     Route::get('/movies/{id}/progress', [MovieController::class, 'getProgress'])->name('movies.progress');
     Route::get('/movies/{id}/progress/show', [MovieController::class, 'showMovieProgressPage'])->name('movies.progress.show');
+
+    //settings admin.profile.picture.update
+    Route::get('/settings', [AdminAccountController::class, 'settings'])->name('settings');
+    Route::put('/account/password/update', [AdminAccountController::class, 'updatePassword'])->name('account.password.update');
+    Route::get('/profile', [AdminAccountController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit', [AdminAccountController::class, 'profileEdit'])->name('profile.edit');
+    Route::put('/account/profile/update', [AdminAccountController::class, 'updateProfile'])->name('profile.update');
+    Route::post('/account/profile/picture/update', [AdminAccountController::class, 'updateProfilePicture'])->name('profile.picture.update');
+
+    //user management
+    Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    Route::delete('/user/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
 });
 
 Route::middleware('auth')->group(function () {

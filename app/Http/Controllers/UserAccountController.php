@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserAccountController extends Controller
 {
@@ -63,8 +64,14 @@ class UserAccountController extends Controller
                 $path = $request->file('photo')->store('public/users');
                 $userDetails->photo = basename($path);
             }
+            
+            // Delete old photo if it exists
+            if ($userDetails->photo && Storage::exists('public/users/' . $userDetails->photo)) {
+                Storage::delete('public/users/' . $userDetails->photo);
+            }
 
             $userDetails->save();
+
         } else {
             // Create userDetails if not exists
             $user->userDetails()->create([
@@ -76,7 +83,7 @@ class UserAccountController extends Controller
 
         $user->save();
 
-        return redirect()->route('user.account.profile')->with('status', 'Profile updated successfully.');
+        return redirect()->route('user.account.profile')->with('success', 'Profile updated successfully.');
     }
 
     /**
@@ -99,6 +106,6 @@ class UserAccountController extends Controller
         $user->password = Hash::make($request->new_password);
         $user->save();
 
-        return redirect()->route('user.account.profile')->with('status', 'Password updated successfully.');
+        return redirect()->route('user.account.profile')->with('success', 'Password updated successfully.');
     }
 }

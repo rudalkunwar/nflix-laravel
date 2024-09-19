@@ -26,12 +26,19 @@
     <!-- Sidebar -->
     <div class="h-screen p-3 space-y-2 w-60 bg-gray-50 text-gray-800 fixed left-0 z-20">
         <div class="flex items-center p-2 space-x-4">
-            <img src="https://source.unsplash.com/100x100/?portrait" alt=""
-                class="w-12 h-12 rounded-full bg-gray-100">
+            @if (auth()->user()->userDetails && auth()->user()->userDetails->photo)
+                <img src="{{ Storage::url('public/users/' . auth()->user()->userDetails->photo) }}"
+                    alt="{{ auth()->user()->name }}" class="w-12 h-12 rounded-full bg-gray-100">
+            @else
+                <img src="{{ asset('admin-avatar.png') }}" alt="Default Avatar"
+                    class="w-14 h-14 border border-gray-200 p-1 object-cover">
+            @endif
+
             <div>
                 <h2 class="text-lg font-semibold">Admin</h2>
                 <span class="flex items-center space-x-1">
-                    <a href="#" class="text-xs hover:underline text-gray-600">View profile</a>
+                    <a href="{{ route('admin.profile') }}" class="text-xs hover:underline text-gray-600">View
+                        profile</a>
                 </span>
             </div>
         </div>
@@ -76,7 +83,7 @@
                 <li class="{{ request()->routeIs('admin.casts.*') ? 'active' : '' }}">
                     <a href="{{ route('admin.casts.index') }}"
                         class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100">
-                        <i class="ri-group-line w-5 h-5 text-gray-600"></i>
+                        <i class="ri-group-2-line w-5 h-5 text-gray-600"></i>
                         <span>Casts</span>
                     </a>
                 </li>
@@ -89,8 +96,18 @@
                 </li>
             </ul>
             <ul class="pt-4 pb-2 space-y-1 text-sm">
-                <li class="{{ request()->routeIs('admin.admin.settings') ? 'active' : '' }}">
-                    <a href="" class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100">
+
+                <li class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.user.index') }}"
+                        class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100">
+                        <i class="ri-group-line w-5 h-5 text-gray-600"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+
+                <li class="{{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.settings') }}"
+                        class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100">
                         <i class="ri-settings-3-line w-5 h-5 text-gray-600"></i>
                         <span>Settings</span>
                     </a>
