@@ -15,11 +15,21 @@ class Premium
      */
     public function handle(Request $request, Closure $next)
     {
+
+
         // Check if the authenticated user is a premium user
+
+        if (auth()->check() && !auth()->user()->userDetails) {
+
+            return redirect()->route('user.premium');
+        }
+
+
         if (auth()->check() && auth()->user()->userDetails->is_premium) {
 
             return $next($request);
         }
+
 
         return redirect()->route('user.premium');
     }
