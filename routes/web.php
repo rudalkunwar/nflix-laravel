@@ -15,6 +15,7 @@ use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +67,9 @@ Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(fu
     Route::get('/watchlists', [WatchlistController::class, 'index'])->name('watchlists');
     Route::post('/watchlists/add', [WatchlistController::class, 'store'])->name('watchlists.add');
     Route::delete('/watchlists/{movieId}/delete', [WatchlistController::class, 'destroy'])->name('watchlists.delete');
+
+    //ratings
+    route::post('/movie/rate', [RatingController::class, 'store'])->name('ratings');
 });
 
 // Admin Group Routes

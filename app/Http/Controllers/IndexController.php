@@ -6,8 +6,10 @@ use App\Models\Actor;
 use App\Models\Director;
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\Rating;
 use Illuminate\Http\Request;
 use App\Services\BubbleSortAlgorithm;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -27,9 +29,15 @@ class IndexController extends Controller
 
     public function show($id)
     {
-        $movie = Movie::with('genres', 'actors')->find($id);
+        $movie = Movie::with('genres', 'actors', 'ratings')->find($id);
 
-        return view('users.movie', compact('movie'));
+        // Calculate the average rating
+        $movieRating = $movie->ratings()->avg('rating');
+
+        $userRating = $movie->ratings()->where('user_id', auth()->id())->first();
+
+
+        return view('users.movie', compact('movie', 'userRating', 'movieRating'));
     }
 
     public function movies(Request $request)

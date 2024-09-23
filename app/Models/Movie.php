@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
     protected $casts = [
@@ -36,6 +37,11 @@ class Movie extends Model
 
     public function watchlists()
     {
-        $this->belongsToMany(Watchlist::class);
+        return $this->belongsToMany(Watchlist::class);
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
     }
 }
