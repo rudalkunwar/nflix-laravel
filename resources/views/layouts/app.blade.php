@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
         integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .active {
             background-color: #e2e8f0;
@@ -51,10 +52,10 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('admin.notifications') ? 'active' : '' }}">
-                    <a class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100">
-                        <i class="ri-notification-4-line w-5 h-5 text-gray-600"></i>
-                        <span>Notifications</span>
+                <li class="{{ request()->routeIs('admin.orders.index') ? 'active' : '' }}">
+                    <a href="{{route('admin.orders.index')}}" class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100">
+                        <i class="ri-inbox-archive-line w-5 h-5"></i>
+                        <span>Orders</span>
                     </a>
                 </li>
             </ul>

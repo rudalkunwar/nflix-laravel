@@ -12,7 +12,7 @@
                     <div class="border border-gray-300 rounded-lg p-4">
                         <h3 class="text-lg font-semibold mb-2">Premium Plan</h3>
                         <p class="text-gray-600 mb-2">Enjoy the best experience with no ads and exclusive content.</p>
-                        <p class="text-2xl font-bold mb-4">Rs 2,000 / month</p>
+                        <p class="text-2xl font-bold mb-4">Rs 2,000 / year</p>
                         <ul class="mb-4">
                             {{-- <li>No ads</li>
                             <li>High-definition (HD)</li>

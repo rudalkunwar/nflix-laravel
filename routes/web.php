@@ -128,6 +128,10 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
     //user management
     Route::get('/users', [UserController::class, 'index'])->name('user.index');
     Route::delete('/user/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
+
+    //orders
+    Route::get('/orders', [DashboardController::class, 'orders'])->name('orders.index');
+    Route::delete('/order/{id}/delete', [DashboardController::class, 'deleteOrders'])->name('orders.destroy');
 });
 
 Route::middleware('auth')->group(function () {

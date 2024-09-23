@@ -24,7 +24,7 @@
                         <td class="py-3 px-4">{{ $user->name }}</td>
                         <td class="py-3 px-4">{{ $user->email }}</td>
                         <td class="py-3 px-4">
-                            @if ($user->is_premium)
+                            @if ($user->userDetails->is_premium)
                                 <span class="text-green-500 font-semibold">Yes</span>
                             @else
                                 <span class="text-red-500 font-semibold">No</span>
