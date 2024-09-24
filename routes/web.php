@@ -15,6 +15,8 @@ use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WatchlistController;
@@ -71,6 +73,10 @@ Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(fu
 
     //ratings
     route::post('/movie/rate', [RatingController::class, 'store'])->name('ratings');
+
+    //feedback
+    Route::get('/feedback', [FeedbackController::class, 'index'])->name('feedback.index');
+    Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 });
 
 // Admin Group Routes
@@ -137,6 +143,11 @@ Route::middleware(['admin', 'auth'])->prefix('admin')->name('admin.')->group(fun
     //orders
     Route::get('/orders', [DashboardController::class, 'orders'])->name('orders.index');
     Route::delete('/order/{id}/delete', [DashboardController::class, 'deleteOrders'])->name('orders.destroy');
+
+    //notification
+    Route::get('/notification', [NotificationController::class, 'index'])->name('notification.index');
+    Route::get('/notification/{id}', [NotificationController::class, 'show'])->name('notification.show');
+    Route::delete('/notification/{id}/delete', [NotificationController::class, 'destroy'])->name('notification.destroy');
 });
 
 Route::middleware('auth')->group(function () {

@@ -53,9 +53,17 @@
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('admin.orders.index') ? 'active' : '' }}">
-                    <a href="{{route('admin.orders.index')}}" class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100">
+                    <a href="{{ route('admin.orders.index') }}"
+                        class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100">
                         <i class="ri-inbox-archive-line w-5 h-5"></i>
                         <span>Orders</span>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.notification.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.notification.index') }}"
+                        class="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100">
+                        <i class="ri-notification-3-line w-5 h-5"></i>
+                        <span>Nnotification</span>
                     </a>
                 </li>
             </ul>

@@ -43,6 +43,10 @@
                         <a href="{{ route('user.premium') }}"
                             class="text-white hover:text-gray-400 font-semibold cursor-pointer">Premium</a>
                     </li>
+                    <li>
+                        <a href="{{ route('user.feedback.index') }}"
+                            class="text-white hover:text-gray-400 font-semibold cursor-pointer">Feedback</a>
+                    </li>
                 </ul>
             </div>
             <div class="flex items-center space-x-6">
