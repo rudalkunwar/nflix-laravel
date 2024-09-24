@@ -5,7 +5,7 @@
         <a href="{{ route('user.home') }}" class="text-blue-600 text-base">
             <i class="ri-home-line"></i>
         </a>
-        <span>All Movies</span>
+        <span>Popular Movies</span>
         <span class="text-sm text-gray-400">
             <i class="ri-arrow-right-s-line"></i>
         </span>
@@ -13,9 +13,9 @@
     <div class="p-6 w-full bg-gray-100 min-h-screen">
         <div class="bg-white shadow-lg rounded-lg p-6 md:p-8">
             <div class="flex flex-col md:flex-row justify-between items-center mb-6">
-                <h1 class="text-3xl font-extrabold text-gray-800 mb-4 md:mb-0">Movies</h1>
+                <h1 class="text-3xl font-extrabold text-gray-800 mb-4 md:mb-0">Popular Movies</h1>
                 <div class="flex items-center space-x-2">
-                    <form method="GET" action="{{ route('user.movies.all') }}" class="flex items-center">
+                    <form method="GET" action="{{ route('user.movies.popular') }}" class="flex items-center">
                         <div class="flex items-center space-x-2">
                             <label for="genres" class="text-gray-700 font-semibold">Filter By Genre:</label>
                             <select name="genres" id="genres"
@@ -27,17 +27,6 @@
                                         {{ $genre->name }}
                                     </option>
                                 @endforeach
-                            </select>
-                        </div>
-                        <div class="flex items-center space-x-2 ml-4">
-                            <label for="sort_by" class="text-gray-700 font-semibold">Sort By:</label>
-                            <select name="sort_by" id="sort_by"
-                                class="border border-gray-300 rounded-md pl-4 pr-8 py-2 capitalize text-gray-700 hover:border-gray-400 focus:outline-none focus:ring focus:ring-indigo-500">
-                                <option value="">Select Sort Option</option>
-                                <option value="title" {{ request('sort_by') == 'title' ? 'selected' : '' }}>Title</option>
-                                <option value="release_date" {{ request('sort_by') == 'release_date' ? 'selected' : '' }}>
-                                    Release Date</option>
-                                <!-- Add more sorting options as needed -->
                             </select>
                         </div>
                         <button type="submit"
@@ -76,6 +65,16 @@
                             </div>
                             <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-3">
                                 <span class="text-white text-lg font-semibold">{{ strtoupper($movie->title) }}</span>
+                                <div>
+                                    <span class="text-yellow-400 font-bold">
+                                        @for ($i = $movie->ratings()->avg('rating'); $i >= 1; $i--)
+                                            <label for="hs-ratings-readonly-{{ $i }}"
+                                                class="text-yellow-400 text-gray-300 pointer-events-none">
+                                                <i class="ri-star-fill text-yellow-400 text-2xl"></i>
+                                            </label>
+                                        @endfor
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     @endforeach

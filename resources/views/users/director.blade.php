@@ -1,7 +1,7 @@
 @extends('users.layouts.app')
 @section('content')
     <!-- Breadcrumb -->
-    <div class="container mx-auto py-4 flex items-center gap-3">
+    <div class="container mx-auto pl-6 py-4 flex items-center gap-3">
         <a href="{{ route('user.home') }}" class="text-blue-600 text-base">
             <i class="ri-home-line"></i>
         </a>

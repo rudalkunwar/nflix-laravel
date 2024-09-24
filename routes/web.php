@@ -37,6 +37,7 @@ Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(fu
 
     Route::get('/home', [IndexController::class, 'home'])->name('home');
     Route::get('/movie/{id}', [IndexController::class, 'show'])->name('movie.show');
+    Route::get('/movies/popular', [IndexController::class, 'popularMovies'])->name('movies.popular');
     Route::get('/movies', [IndexController::class, 'movies'])->name('movies.all');
     Route::get('/actor/{id}/show', [IndexController::class, 'actor'])->name('actor.show');
     Route::get('/director/{id}/show', [IndexController::class, 'director'])->name('director.show');
