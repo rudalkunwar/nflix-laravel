@@ -9,6 +9,7 @@
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
         "league/omnipay": "^3.2",
+        "nujan/esewa": "@dev",
         "sudiptpa/omnipay-esewa": "^1.0"
     },
     "require-dev": {

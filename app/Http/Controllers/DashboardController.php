@@ -18,7 +18,11 @@ class DashboardController extends Controller
         $movies = Movie::count();
         $genres = Genre::count();
         $categories = Category::count();
-        $monthlyRevenue = Order::whereMonth('created_at', now()->month)->sum('amount');
+        // Additional Analytics
+        $monthlyRevenue = Order::whereMonth('created_at', now()->month)
+            ->where('payment_status', Order::PAYMENT_COMPLETED)
+            ->sum('amount'); // Use 'amount' field if that's what you're storing
+
         $newMoviesThisMonth = Movie::whereMonth('created_at', Carbon::now()->month)->count();
         $topGenre = Genre::withCount('movies')
             ->orderBy('movies_count', 'desc')

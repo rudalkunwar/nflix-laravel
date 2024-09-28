@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2dd0c51e0e9b7f7319850cf7c9eb0808",
+    "content-hash": "6fbab49eeac18a718fe94a1a4004360b",
     "packages": [
         {
             "name": "brick/math",
@@ -2444,6 +2444,50 @@
                 "source": "https://github.com/nikic/PHP-Parser/tree/v5.1.0"
             },
             "time": "2024-07-01T20:03:41+00:00"
+        },
+        {
+            "name": "nujan/esewa",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/NujanSitaula/nujan-esewa.git",
+                "reference": "68a11f76d6c6f8fe191cc8bc30f083825dd9c9b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/NujanSitaula/nujan-esewa/zipball/68a11f76d6c6f8fe191cc8bc30f083825dd9c9b4",
+                "reference": "68a11f76d6c6f8fe191cc8bc30f083825dd9c9b4",
+                "shasum": ""
+            },
+            "type": "project",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Nujan\\Esewa\\EsewaServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nujan\\Esewa\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "NujanSitaula",
+                    "email": "nujan.sitaula@outlook.com"
+                }
+            ],
+            "description": "Package to seamlessly integrate eSewa payment gateway to laravel project.",
+            "support": {
+                "issues": "https://github.com/NujanSitaula/nujan-esewa/issues",
+                "source": "https://github.com/NujanSitaula/nujan-esewa/tree/v1.0.0"
+            },
+            "time": "2024-05-04T07:40:46+00:00"
         },
         {
             "name": "nunomaduro/termwind",
@@ -9481,7 +9525,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "nujan/esewa": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
