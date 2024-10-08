@@ -40,6 +40,10 @@
                             class="text-white hover:text-gray-400 font-semibold cursor-pointer">My List</a>
                     </li>
                     <li>
+                        <a href="{{ route('user.recommend') }}"
+                            class="text-white hover:text-gray-400 font-semibold cursor-pointer">Recommendations</a>
+                    </li>
+                    <li>
                         <a href="{{ route('user.premium') }}"
                             class="text-white hover:text-gray-400 font-semibold cursor-pointer">Premium</a>
                     </li>

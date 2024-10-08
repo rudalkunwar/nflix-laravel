@@ -11,7 +11,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use App\Models\Order;
 
-class User extends Authenticatable implements MustVerifyEmailContract
+// implements MustVerifyEmailContract
+
+class User extends Authenticatable 
 {
     use HasFactory, Notifiable;
 

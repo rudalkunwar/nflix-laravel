@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\RecommendationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
@@ -66,8 +67,9 @@ Route::middleware(['auth', 'verified'])->prefix('user')->name('user.')->group(fu
     Route::get('/search', [SearchController::class, 'index'])->name('search');
     Route::get('/search/movie', [SearchController::class, 'search'])->name('movies.search');
 
-    //watchlist
+    //watchlist 
     Route::get('/watchlists', [WatchlistController::class, 'index'])->name('watchlists');
+    Route::get('/recommend', [RecommendationController::class, 'index'])->name('recommend');
     Route::post('/watchlists/add', [WatchlistController::class, 'store'])->name('watchlists.add');
     Route::delete('/watchlists/{movieId}/delete', [WatchlistController::class, 'destroy'])->name('watchlists.delete');
 

@@ -9,18 +9,15 @@ use App\Models\Movie;
 use App\Models\Rating;
 use Illuminate\Http\Request;
 use App\Services\MergeSortAlgorithm;
-use App\Services\RecommendationAlgorithm;
 use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
     protected $mergesort;
-    protected $recommend;
 
-    public function __construct(MergeSortAlgorithm $mergesort, RecommendationAlgorithm $recommend)
+    public function __construct(MergeSortAlgorithm $mergesort)
     {
         $this->mergesort = $mergesort;
-        $this->recommend = $recommend;
     }
 
     public function home()
