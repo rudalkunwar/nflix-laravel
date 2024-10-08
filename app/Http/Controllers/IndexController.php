@@ -8,18 +8,18 @@ use App\Models\Genre;
 use App\Models\Movie;
 use App\Models\Rating;
 use Illuminate\Http\Request;
-use App\Services\BubbleSortAlgorithm;
+use App\Services\MergeSortAlgorithm;
 use App\Services\RecommendationAlgorithm;
 use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
-    protected $bubbleSort;
+    protected $mergesort;
     protected $recommend;
 
-    public function __construct(BubbleSortAlgorithm $bubbleSort, RecommendationAlgorithm $recommend)
+    public function __construct(MergeSortAlgorithm $mergesort, RecommendationAlgorithm $recommend)
     {
-        $this->bubbleSort = $bubbleSort;
+        $this->mergesort = $mergesort;
         $this->recommend = $recommend;
     }
 
@@ -54,12 +54,12 @@ class IndexController extends Controller
 
         // Filter movies by genre
         if ($selectedGenre) {
-            $movies = $this->bubbleSort->filterByGenre($movies, $selectedGenre);
+            $movies = $this->mergesort->filterByGenre($movies, $selectedGenre);
         }
 
         // Sort movies
         if ($sortBy) {
-            $movies = $this->bubbleSort->sortAscending($movies, $sortBy); // or sortDescending
+            $movies = $this->mergesort->sortAscending($movies, $sortBy); // or sortDescending
         }
 
         return view('users.movies', compact('movies', 'genres'));
@@ -108,7 +108,7 @@ class IndexController extends Controller
         $selectedGenre = $request->input('genres');
 
         if ($selectedGenre) {
-            $movies = $this->bubbleSort->filterByGenre($movies, $selectedGenre);
+            $movies = $this->mergesort->filterByGenre($movies, $selectedGenre);
         }
 
         // Step 3: Sort movies by average rating
