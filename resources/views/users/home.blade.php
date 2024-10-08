@@ -36,7 +36,15 @@
                     <a href="#"
                         class="flex items-center px-5 py-2 border-2 border-gray-300 hover:bg-gray-400 hover:text-black transition duration-300 ease-in-out">
                         <i class="ri-add-fill text-xl mr-2"></i>
-                        <span class="text-base font-semibold">Watch Later</span>
+                        <span class="text-base font-semibold">
+                            <form action="{{ route('user.watchlists.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="movie_id" value="{{ $movie->id }}">
+                                <button type="submit" class="text-white">
+                                    Watch Later
+                                </button>
+                            </form>
+                        </span>
                     </a>
                 </div>
 

@@ -3,14 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\RegexSearchAlgorithm;
+use App\Services\BinarySearchAlgorithm;
 use App\Models\Movie;
 
 class SearchController extends Controller
 {
     protected $searchAlgorithm;
 
-    public function __construct(RegexSearchAlgorithm $searchAlgorithm)
+    public function __construct(BinarySearchAlgorithm $searchAlgorithm)
     {
         $this->searchAlgorithm = $searchAlgorithm;
     }
@@ -31,7 +31,7 @@ class SearchController extends Controller
 
         $query = $request->input('query');
 
-        $fields = ['title'];
+        $fields = 'title';
 
         $allMovies = Movie::all();
 
